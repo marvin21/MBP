@@ -34,7 +34,17 @@ app.controller('AdapterListController',
 
             vm.dzMethods = {};
 
-            vm.parameters = [];
+            /**
+             * The noisy data parameter is necessary for every and defines if the data is anonymized.
+             * @type {{unit: string, name: string, type: string, mandatory: boolean}}
+             */
+            var noisyDataParameter = {
+                name: "noisy_data",
+                type: "Switch",
+                unit: "",
+                mandatory: true
+            };
+            vm.parameters = [noisyDataParameter];
             vm.parameterTypes = parameterTypesList;
 
             /**
