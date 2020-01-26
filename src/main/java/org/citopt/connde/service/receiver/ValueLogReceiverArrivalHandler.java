@@ -1,11 +1,13 @@
 package org.citopt.connde.service.receiver;
 
+import com.sun.xml.internal.bind.v2.TODO;
 import org.citopt.connde.domain.valueLog.ValueLog;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -30,6 +32,8 @@ class ValueLogReceiverArrivalHandler implements MqttCallback {
 
     //Set of observers
     private Set<ValueLogReceiverObserver> observerSet;
+
+    private NoiseComponent noiseComponent;
 
     /**
      * Creates a new value logger event handler.
@@ -61,6 +65,8 @@ class ValueLogReceiverArrivalHandler implements MqttCallback {
      */
     @Override
     public void messageArrived(String topic, MqttMessage mqttMessage) throws JSONException {
+        noiseComponent = new NoiseComponent();
+
         //Record current time
         Instant time = ZonedDateTime.now().toInstant();
 
@@ -87,6 +93,12 @@ class ValueLogReceiverArrivalHandler implements MqttCallback {
         valueLog.setIdref(componentID);
         valueLog.setValue(json.getDouble(JSON_KEY_VALUE));
         valueLog.setComponent(componentType);
+        if (json.getBoolean("noisy_data")) {
+            System.out.println("################# Data should be noised ###########################");
+            // valueLog.setAnonymisedValue(noiseComponent.anonymiseLightValue(json.getDouble(JSON_KEY_VALUE)));
+        }
+
+        // TODO Bridge hier um an alle "fremden" noisy Werte zu senden, nur nicht an sich selbst
 
         //Notify all observers
         notifyObservers(valueLog);

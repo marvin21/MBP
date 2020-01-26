@@ -36,6 +36,8 @@ public class ValueLog {
     private String component; //Component type
     @Column(name = "value")
     private double value;
+    @Column(name = "anonymised-value")
+    private double anonymisedValue;
 
     /**
      * Returns the time at which the value log was received.
@@ -156,5 +158,23 @@ public class ValueLog {
      */
     public void setValue(double value) {
         this.value = value;
+    }
+
+    /**
+     * Returns the anonymised value that was received.
+     *
+     * @return The value
+     */
+    public double getAnonymisedValue() {
+        return anonymisedValue;
+    }
+
+    /**
+     * Sets the anonymised value that was calculated.
+     *
+     * @param value The value to set
+     */
+    public void setAnonymisedValue(double value) {
+        this.anonymisedValue = value;
     }
 }

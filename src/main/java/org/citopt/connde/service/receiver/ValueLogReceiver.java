@@ -54,6 +54,7 @@ public class ValueLogReceiver {
         }
 
         //Add observer to set
+        System.out.println(observer);
         observerSet.add(observer);
     }
 

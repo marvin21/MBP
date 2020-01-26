@@ -7,6 +7,7 @@ import org.citopt.connde.domain.valueLog.ValueLog;
  * a new value message arrives.
  */
 public interface ValueLogReceiverObserver {
+
     /**
      * Called in case a new value message arrives at the ValueLogReceiver. The transformed message is passed
      * as value log.
