@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.citopt.connde.domain.valueLog.ValueLog;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
@@ -19,6 +21,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  * which are then passed to the observers of the ValueLogReceiver.
  */
 class ValueLogReceiverArrivalHandler implements MqttCallback {
+
+    private static final Logger logger = Logger.getLogger(ValueLogReceiverArrivalHandler.class.getName());
 
     //Format in which dates are stores
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -54,8 +58,7 @@ class ValueLogReceiverArrivalHandler implements MqttCallback {
     }
 
     /**
-     * Handles incoming m
-     * qtt messages, i.e. parses the incoming value message to a value log which is then
+     * Handles incoming mqtt messages, i.e. parses the incoming value message to a value log which is then
      * passed to the observers of the ValueLogReceiver.
      *
      * @param topic       The topic under which the message was sent
@@ -91,12 +94,12 @@ class ValueLogReceiverArrivalHandler implements MqttCallback {
         valueLog.setIdref(componentID);
         valueLog.setValue(json.getDouble(JSON_KEY_VALUE));
         valueLog.setComponent(componentType);
-        System.out.println("######################################" + json.toString());
+        logger.log(Level.INFO, "######################################" + json.toString());
         if (json.getString("noisyData").equals("True")) {
-            System.out.println("################# Data should be noised 1 ###########################");
+            logger.log(Level.INFO, "111111111111111111111111111111111111111" + json.toString());
         }
         if (json.getBoolean("noisyData")) {
-            System.out.println("################# Data should be noised 2 ###########################");
+            logger.log(Level.INFO, "2222222222222222222222222222222222222222222" + json.toString());
             // valueLog.setAnonymisedValue(noiseComponent.anonymiseLightValue(json.getDouble(JSON_KEY_VALUE)));
         }
 

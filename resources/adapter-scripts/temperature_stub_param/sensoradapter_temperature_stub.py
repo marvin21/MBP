@@ -55,7 +55,6 @@ class mqttClient(object):
 def main(argv):
    #default interval for sending data
    measureInterval = 30
-   #noisy_data = False
 
    #Read other measure interval from parameter data
    paramArray = json.loads(argv[0])

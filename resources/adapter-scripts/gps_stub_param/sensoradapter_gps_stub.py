@@ -76,12 +76,13 @@ def main(argv):
    configExists = False
 
    hostname = '192.168.209.135'
-   topic_pub = 'test'
+   topic_pub = 'sensor/test'
 
    configFile = os.path.join(os.getcwd(), configFileName)
 
    while (not configExists):
        configExists = os.path.exists(configFile)
+       print("Retrying...")
        time.sleep(1)
 
    # BEGIN parsing file
