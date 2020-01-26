@@ -1,6 +1,10 @@
 package org.citopt.connde.service.receiver;
 
-import com.sun.xml.internal.bind.v2.TODO;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.ZonedDateTime;
+import java.util.Set;
+
 import org.citopt.connde.domain.valueLog.ValueLog;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
@@ -8,12 +12,6 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.ZonedDateTime;
-import java.util.Set;
-import java.util.Set;
 
 /**
  * then added to the value log repository.
@@ -66,9 +64,8 @@ class ValueLogReceiverArrivalHandler implements MqttCallback {
      */
     @Override
     public void messageArrived(String topic, MqttMessage mqttMessage) throws JSONException {
-        noiseComponent = new NoiseComponent();
 
-        //Record current time
+       //Record current time
         Instant time = ZonedDateTime.now().toInstant();
 
         //Extract QoS
