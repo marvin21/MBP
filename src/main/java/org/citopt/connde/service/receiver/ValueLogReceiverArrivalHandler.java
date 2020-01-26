@@ -33,6 +33,7 @@ class ValueLogReceiverArrivalHandler implements MqttCallback {
     //Set of observers
     private Set<ValueLogReceiverObserver> observerSet;
 
+    @Autowired
     private NoiseComponent noiseComponent;
 
     /**

@@ -2,6 +2,7 @@ package org.citopt.connde.service.receiver;
 
 import org.springframework.stereotype.Component;
 
+@Component
 public class NoiseComponent {
 
 	public double anonymiseLightValue(double value) {
