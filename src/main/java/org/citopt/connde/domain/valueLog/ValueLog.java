@@ -38,8 +38,8 @@ public class ValueLog {
     private String component; //Component type
     @Column(name = "value")
     private double value;
-    @Column(name = "noisyData")
-    private String noisyData;
+    @Column(name = "originalData")
+    private double originalData;
 
     /**
      * Returns the time at which the value log was received.
@@ -167,8 +167,8 @@ public class ValueLog {
      *
      * @return The value
      */
-    public String getAnonymisedValue() {
-        return noisyData;
+    public double getOriginalData() {
+        return originalData;
     }
 
     /**
@@ -176,7 +176,7 @@ public class ValueLog {
      *
      * @param value The value to set
      */
-    public void setAnonymisedValue(String value) {
-        this.noisyData = value;
+    public void setOriginalData(double value) {
+        this.originalData = value;
     }
 }

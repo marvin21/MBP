@@ -92,18 +92,14 @@ class ValueLogReceiverArrivalHandler implements MqttCallback {
         valueLog.setQos(qos);
         valueLog.setTime(time);
         valueLog.setIdref(componentID);
-        valueLog.setValue(json.getDouble(JSON_KEY_VALUE));
         valueLog.setComponent(componentType);
-        logger.log(Level.INFO, "######################################" + json.toString());
-        if (json.getString("noisyData").equals("True")) {
-            logger.log(Level.INFO, "111111111111111111111111111111111111111" + json.toString());
-        }
         if (json.getBoolean("noisyData")) {
-            logger.log(Level.INFO, "2222222222222222222222222222222222222222222" + json.toString());
-            // valueLog.setAnonymisedValue(noiseComponent.anonymiseLightValue(json.getDouble(JSON_KEY_VALUE)));
+            logger.log(Level.INFO, "##################" + json.toString());
+            valueLog.setOriginalData(json.getDouble(JSON_KEY_VALUE));
+            valueLog.setValue(noiseComponent.anonymiseDistanceValue(json.getDouble(JSON_KEY_VALUE)));
+        } else {
+            valueLog.setValue(json.getDouble(JSON_KEY_VALUE));
         }
-
-        // TODO Bridge hier um an alle "fremden" noisy Werte zu senden, nur nicht an sich selbst
 
         //Notify all observers
         notifyObservers(valueLog);

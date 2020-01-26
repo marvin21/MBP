@@ -9,7 +9,7 @@ public class NoiseComponent {
 		return value+10;
 	}
 
-	private void anonymiseGpsValues(int latitude, int longitude) {
-
+	public double anonymiseDistanceValue(double value) {
+		return ((Math.random() * ((10 - 5) + 1)) + 5) + value;
 	}
 }
