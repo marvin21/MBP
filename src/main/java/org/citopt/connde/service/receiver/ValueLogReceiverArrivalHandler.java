@@ -91,6 +91,7 @@ class ValueLogReceiverArrivalHandler implements MqttCallback {
         valueLog.setIdref(componentID);
         valueLog.setValue(json.getDouble(JSON_KEY_VALUE));
         valueLog.setComponent(componentType);
+        System.out.println("######################################" + json.get("noisyData"));
         if (json.getString("noisyData").equals("True")) {
             System.out.println("################# Data should be noised 1 ###########################");
         }
