@@ -1,10 +1,12 @@
 package org.citopt.connde.domain.valueLog;
 
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.concurrent.TimeUnit;
+
 import org.citopt.connde.InfluxDBConfiguration;
 import org.influxdb.annotation.Column;
-import org.influxdb.annotation.Measurement;import java.text.SimpleDateFormat;import java.util.Date;
+import org.influxdb.annotation.Measurement;
 
 /**
  * Objects of this class represent value logs that were received by the MQTT broker and
@@ -36,8 +38,8 @@ public class ValueLog {
     private String component; //Component type
     @Column(name = "value")
     private double value;
-    @Column(name = "anonymised-value")
-    private double anonymisedValue;
+    @Column(name = "noisyData")
+    private String noisyData;
 
     /**
      * Returns the time at which the value log was received.
@@ -165,8 +167,8 @@ public class ValueLog {
      *
      * @return The value
      */
-    public double getAnonymisedValue() {
-        return anonymisedValue;
+    public String getAnonymisedValue() {
+        return noisyData;
     }
 
     /**
@@ -174,7 +176,7 @@ public class ValueLog {
      *
      * @param value The value to set
      */
-    public void setAnonymisedValue(double value) {
-        this.anonymisedValue = value;
+    public void setAnonymisedValue(String value) {
+        this.noisyData = value;
     }
 }

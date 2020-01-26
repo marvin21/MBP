@@ -1,13 +1,13 @@
 
 package org.citopt.connde.service.receiver;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.citopt.connde.service.mqtt.MQTTService;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Background service that receives incoming MQTT value log messages that comply to certain topics. The service
@@ -54,7 +54,6 @@ public class ValueLogReceiver {
         }
 
         //Add observer to set
-        System.out.println(observer);
         observerSet.add(observer);
     }
 

@@ -40,6 +40,7 @@ public class ValueLogWriter implements ValueLogReceiverObserver {
      */
     @Override
     public void onValueReceived(ValueLog valueLog) {
+
         //Sanity check
         if (valueLog == null) {
             throw new IllegalArgumentException("Value log must not be null.");

@@ -13,7 +13,7 @@ import random
 # MQTT Client
 ############################
 class mqttClient(object):
-   hostname = 'localhost'
+   hostname = '192.168.209.135'
    port = 1883
    clientid = ''
 
@@ -59,8 +59,8 @@ def main(argv):
    brokerIps = []
    configExists = False
 
-   hostname = 'localhost'
-   topic_pub = 'test'
+   hostname = '192.168.209.135'
+   topic_pub = 'sensor/test'
    
    configFile = os.path.join(os.getcwd(), configFileName)
    
