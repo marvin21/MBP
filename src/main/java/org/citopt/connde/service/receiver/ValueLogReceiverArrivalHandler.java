@@ -96,10 +96,10 @@ class ValueLogReceiverArrivalHandler implements MqttCallback {
         valueLog.setComponent(componentType);
         if (json.getBoolean("noisyData")) {
             logger.log(Level.INFO, "##################" + json.toString());
-            //valueLog.setOriginalData(json.getDouble(JSON_KEY_VALUE));
-//            valueLog.setValue(noiseComponent.anonymiseDistanceValue(json.getDouble(JSON_KEY_VALUE)));
-            valueLog.setValue(value + 10);
-
+            valueLog.setOriginalData(json.getDouble(JSON_KEY_VALUE));
+            double anonymisedValue = noiseComponent.anonymiseDistanceValue(json.getDouble(JSON_KEY_VALUE));
+            logger.log(Level.INFO, "############# " + anonymisedValue);
+            valueLog.setValue(anonymisedValue);
         } else {
             valueLog.setValue(value);
         }

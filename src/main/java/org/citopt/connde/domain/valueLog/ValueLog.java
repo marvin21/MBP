@@ -38,8 +38,8 @@ public class ValueLog {
     private String component; //Component type
     @Column(name = "value")
     private double value;
-    //@Column(name = "originalData")
-    //private double originalData;
+    @Column(name = "originalData")
+    private double originalData;
 
     /**
      * Returns the time at which the value log was received.
@@ -160,6 +160,14 @@ public class ValueLog {
      */
     public void setValue(double value) {
         this.value = value;
+    }
+
+    public double getOriginalData() {
+        return originalData;
+    }
+
+    public void setOriginalData(double originalData) {
+        this.originalData = originalData;
     }
 
 }
