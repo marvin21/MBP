@@ -85,6 +85,7 @@ class ValueLogReceiverArrivalHandler implements MqttCallback {
 
         String componentType = json.getString(JSON_KEY_COMPONENT_TYPE);
         String componentID = json.getString(JSON_COMPONENT_ID);
+        double value = json.getDouble(JSON_KEY_VALUE);
 
         //Set value log fields
         valueLog.setTopic(topic);
@@ -96,9 +97,11 @@ class ValueLogReceiverArrivalHandler implements MqttCallback {
         if (json.getBoolean("noisyData")) {
             logger.log(Level.INFO, "##################" + json.toString());
             //valueLog.setOriginalData(json.getDouble(JSON_KEY_VALUE));
-            valueLog.setValue(noiseComponent.anonymiseDistanceValue(json.getDouble(JSON_KEY_VALUE)));
+//            valueLog.setValue(noiseComponent.anonymiseDistanceValue(json.getDouble(JSON_KEY_VALUE)));
+            valueLog.setValue(value + 10);
+
         } else {
-            valueLog.setValue(json.getDouble(JSON_KEY_VALUE));
+            valueLog.setValue(value);
         }
 
         //Notify all observers
