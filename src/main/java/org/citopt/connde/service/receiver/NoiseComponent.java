@@ -10,6 +10,6 @@ public class NoiseComponent {
 	}
 
 	public double anonymiseDistanceValue(double value) {
-		return ((Math.random() * ((10 - 5) + 1)) + 5) + value;
+		return value + 10;
 	}
 }
