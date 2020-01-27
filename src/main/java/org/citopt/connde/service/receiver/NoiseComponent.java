@@ -10,10 +10,6 @@ public class NoiseComponent {
 		this.value = value;
 	}
 
-	public double anonymiseLightValue() {
-		return value+10;
-	}
-
 	public double anonymiseDistanceValue() {
 		value = value + (Math.random() * min + max);
 		return value;
