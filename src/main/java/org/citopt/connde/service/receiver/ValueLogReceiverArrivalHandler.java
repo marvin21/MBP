@@ -31,6 +31,7 @@ class ValueLogReceiverArrivalHandler implements MqttCallback {
     private static final String JSON_KEY_COMPONENT_TYPE = "component";
     private static final String JSON_COMPONENT_ID = "id";
     private static final String JSON_KEY_VALUE = "value";
+    private static final String JSON_NOISY_DATA = "noisyData";
 
     //Set of observers
     private Set<ValueLogReceiverObserver> observerSet;
@@ -94,7 +95,7 @@ class ValueLogReceiverArrivalHandler implements MqttCallback {
         valueLog.setTime(time);
         valueLog.setIdref(componentID);
         valueLog.setComponent(componentType);
-        if (json.getBoolean("noisyData")) {
+        if (json.getBoolean(JSON_NOISY_DATA)) {
             logger.log(Level.INFO, "##################" + json.toString());
             valueLog.setOriginalData(json.getDouble(JSON_KEY_VALUE));
             double anonymisedValue = noiseComponent.anonymiseDistanceValue(json.getDouble(JSON_KEY_VALUE));
