@@ -13,7 +13,6 @@ import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * then added to the value log repository.
@@ -36,7 +35,6 @@ class ValueLogReceiverArrivalHandler implements MqttCallback {
     //Set of observers
     private Set<ValueLogReceiverObserver> observerSet;
 
-    @Autowired
     private NoiseComponent noiseComponent;
 
     /**
@@ -98,7 +96,8 @@ class ValueLogReceiverArrivalHandler implements MqttCallback {
         if (json.getBoolean(JSON_NOISY_DATA)) {
             logger.log(Level.INFO, "##################" + json.toString());
             valueLog.setOriginalData(json.getDouble(JSON_KEY_VALUE));
-            double anonymisedValue = noiseComponent.anonymiseDistanceValue(json.getDouble(JSON_KEY_VALUE));
+            noiseComponent = new NoiseComponent(json.getDouble(JSON_KEY_VALUE));
+            double anonymisedValue = noiseComponent.anonymiseDistanceValue();
             logger.log(Level.INFO, "############# " + anonymisedValue);
             valueLog.setValue(anonymisedValue);
         } else {

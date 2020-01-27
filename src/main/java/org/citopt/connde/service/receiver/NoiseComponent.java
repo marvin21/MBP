@@ -1,18 +1,20 @@
 package org.citopt.connde.service.receiver;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class NoiseComponent {
 
 	private final int min = 10;
 	private final int max = 25;
+	private double value;
 
-	public double anonymiseLightValue(double value) {
+	public NoiseComponent(double value) {
+		this.value = value;
+	}
+
+	public double anonymiseLightValue() {
 		return value+10;
 	}
 
-	public double anonymiseDistanceValue(double value) {
+	public double anonymiseDistanceValue() {
 		value = value + (Math.random() * min + max);
 		return value;
 	}
